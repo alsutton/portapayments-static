@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PortaPayments - Making Payments Portable</title>
+<link rel="icon" type="image/vnd.microsoft.icon" href="http://portapayments.com/favicon.ico">
+<link rel="icon" type="image/png" href="http://portapayments.com/favicon.png">
+<link href="http://static.portapayments.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      body { padding-top: 60px; }
+      footer { text-align: center }
+    </style>
+<script type="text/javascript">
+function generateUniversalCode() {
+document.all.codeimage.src = 'http://web-static.portapayments.com/images/loading.gif';
+document.all.codeimage.src = 'http://portapayments.appspot.com/CreateUniversalCode?c='+escape(document.forms[0].c.value)
++'&a0='+escape(document.forms[0].a0.value)
++'&r0='+escape(document.forms[0].r0.value);
+}
+
+function generateFreeCode() {
+document.all.freecodeimage.src = 'http://web-static.portapayments.com/images/loading.gif';
+document.all.freecodeimage.src = 'http://portapayments.appspot.com/CreateCode?c='+escape(document.forms[0].c.value)
++'&a0='+escape(document.forms[0].a0.value)
++'&r0='+escape(document.forms[0].r0.value);
+}
+
+function clear(id)
+{
+	if (document.getElementById)
+	{
+		document.getElementById("r"+id).value=''
+		document.getElementById("a"+id).value=''
+	}
+}
+
+function show(id)
+{
+	if (document.getElementById)
+	{
+		obj = document.getElementById(id);
+		obj.style.display = 'block';
+	}
+}
+
+function hide(id)
+{
+	if (document.getElementById)
+	{
+		obj = document.getElementById(id);
+		obj.style.display = 'none';
+	}
+}
+</script>
+</head>
+<body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">PortaPayments</a>
+          <p class="pull-right"><a href="faq.html">FAQ</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="content">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+			<p>PortaPayments is a "Scan & Pay" solution which allows customers to purchase your goods by scanning a 3D bar code with their 'phone. We provide two types of codes, one is free and requires the use of our application to scan and pay, the other, called a universal code, has a very small charge associated with it and will work with any QR code scanner that can scan and direct users to website URLs.</p>
+		</div>
+		<div id="universal">
+			<div class="row">
+				<div class="span2">
+					<h6>Code Type</h6>
+					<p><b>Universal</b></p>
+					<p><a href="javascript: show('free'); hide('universal');">Free</a></p>
+				</div>
+				<div class="span14">
+					<h3>Universal Code Generator</h3>
+					<form onSubmit="generateCode(); return true;" name="genform">
+						<table>
+							<tr>
+								<td>Recipient :</td>
+								<td><input type="text" name="r0" value="support@portapayments.com" size="20"/></td>
+								<td rowspan="4">
+									<img width="192" height="192" id="codeimage" src="http://static.portapayments.com/images/blankcode.png" style="border: 1px solid black" alt="QR Code"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Currency :</td>
+								<td>
+									<select name="c">
+										<option value="USD">U.S. Dollar</option>
+										<option value="EUR">Euro</option>
+										<option value="GBP">Pounds Sterling</option>
+										<option value="CAD">Canadian Dollar</option>
+										<option value="MXN">Mexican Peso</option>
+										<option value="NOK">Norwegian Kroner</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Amount :</td>
+								<td><input type="text" name="a0" value="1.23" size="6"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="#" onclick="generateUniversalCode(); return true;" class="btn primary">Generate Code -&gt;</a></td>
+							</tr>
+						</table>
+					</form>
+			      	<p><b>Please note :</b> Payments are made via PayPal and you must adhere to their acceptable use policy which is
+	      			<a href="https://cms.paypal.com/us/cgi-bin/marketingweb?cmd=_render-content&amp;content_ID=ua/AcceptableUse_full&amp;locale.x=en_US" target="_blank">available here</a>.
+			      	There is a 0.25% fee charged in addition to any PayPal fees each time a payment is made via a universal code
+	     		 	(minimum fee: 2 minor units of currency - i.e. 2 cents, 2 pence, etc.).</p>
+		      </div>
+		    </div>
+		</div>
+		<div id="free" style="display: none">
+			<div class="row">
+				<div class="span2">
+					<h6>Code Type</h6>
+					<p><a href="javascript: show('universal'); hide('free');">Universal</a></p>
+					<p><b>Free</b></p>
+				</div>
+				<div class="span14">
+					<h3>Free Code Generator</h3>
+					<form onSubmit="generateFreeCode(); return true;" name="genform">
+						<table>
+							<tr>
+								<td>Recipient :</td>
+								<td><input type="text" name="r0" value="support@portapayments.com" size="20"/></td>
+								<td rowspan="4">
+									<img width="192" height="192" id="freecodeimage" src="http://static.portapayments.com/images/blankcode.png" style="border: 1px solid black" alt="QR Code"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Currency :</td>
+								<td>
+									<select name="c">
+										<option value="USD">U.S. Dollar</option>
+										<option value="EUR">Euro</option>
+										<option value="GBP">Pounds Sterling</option>
+										<option value="CAD">Canadian Dollar</option>
+										<option value="MXN">Mexican Peso</option>
+										<option value="NOK">Norwegian Kroner</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Amount :</td>
+								<td><input type="text" name="a0" value="1.23" size="6"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="#" onclick="generateFreeCode(); return true;" class="btn primary">Generate Code -&gt;</a></td>
+							</tr>
+						</table>
+					</form>
+					<p><b>Please note :</b> Payments are made via PayPal and you must adhere to their acceptable use policy which is
+					<a href="https://cms.paypal.com/us/cgi-bin/marketingweb?cmd=_render-content&amp;content_ID=ua/AcceptableUse_full&amp;locale.x=en_US" target="_blank">available here</a>. Customers will need the
+					<a href="https://market.android.com/details?id=com.portapayments.android">PortaPayments application</a> in order to scan
+					a free code.</p>
+				</div>
+			</div>
+        </div>
+        <footer>
+          <p>&copy; 2011 Funky Android Ltd., All Rights Reserved.</p>
+        </footer>
+      </div>
+    </div>
+</body>
+</html>
